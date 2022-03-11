@@ -1,0 +1,19 @@
+{
+    "name": "TypeCodebase.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1282bd4e91c288843b5b072bc854f6d8",
+        "GUID:478a2357cc57436488a56e564b08d223"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

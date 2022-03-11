@@ -1,0 +1,16 @@
+{
+  "name": "com.apperture.type-codebase",
+  "displayName": "Type Codebase",
+  "version": "1.0.0",
+  "unity": "2021.2",
+  "description": "Provide a centralized way to analyze types and cache things (like UnityEditor.TypeCache)",
+  "keywords": [
+	"type",
+	"cache",
+	"codebase"
+  ],
+  "author": "Arnaud Begue",
+  "hideInEditor": false,
+  "homepage": "",
+  "type": ""
+}
