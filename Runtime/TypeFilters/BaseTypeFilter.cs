@@ -13,7 +13,7 @@ namespace TypeCodebase
 
         public override int GetHashCode()
         {
-            if (_cachedHashCode.HasValue)
+            if (!_cachedHashCode.HasValue)
             {
                 _cachedHashCode = BuildHashCode();
             }
