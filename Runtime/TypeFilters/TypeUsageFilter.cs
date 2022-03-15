@@ -7,8 +7,9 @@ namespace TypeCodebase
     /// <summary>
     /// Only the types that match the <see cref="ETypeUsageFlag"/> will pass.
     /// </summary>
-    public class TypeUsageFilter : ITypeFilter
+    public class TypeUsageFilter : BaseTypeFilter
     {
+        protected override int FilterId => 0;
         private ETypeUsageFlag _usage;
 
         public TypeUsageFilter(ETypeUsageFlag usage)
@@ -16,7 +17,7 @@ namespace TypeCodebase
             _usage = usage;
         }
 
-        public IEnumerable<Type> Filter(IEnumerable<Type> types)
+        public override IEnumerable<Type> Filter(IEnumerable<Type> types)
             => types.Where((t)
                 => (!t.IsAbstract || _usage.HasFlag(ETypeUsageFlag.Abstract))
                 && (!t.IsInterface || _usage.HasFlag(ETypeUsageFlag.Interface))
@@ -26,10 +27,7 @@ namespace TypeCodebase
                 && (!_usage.HasFlag(ETypeUsageFlag.ForbidUnityObject) || !typeof(UnityEngine.Object).IsAssignableFrom(t))
             );
 
-        public override int GetHashCode()
-        {
-            const int filterId = 0;
-            return HashCode.Combine(filterId, _usage);
-        }
+        protected override int BuildHashCode()
+            => HashCode.Combine(FilterId, _usage);
     }
 }

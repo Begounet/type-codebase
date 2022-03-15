@@ -19,7 +19,7 @@ namespace TypeCodebase
         protected override Type[] CacheResults()
             => _assembly.GetTypes();
 
-        public override int GetHashCode()
+        protected override int BuildHashCode()
             => HashCode.Combine(QueryTypeId, _assembly);
     }
 }

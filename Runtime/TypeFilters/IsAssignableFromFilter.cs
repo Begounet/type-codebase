@@ -8,8 +8,9 @@ namespace TypeCodebase
     /// Only types that inherit from the type used in the constructor will pass.
     /// TypesSource.Where((t) => baseType == null || baseType.IsAssignableFrom(t));
     /// </summary>
-    public class IsAssignableFromFilter : ITypeFilter
+    public class IsAssignableFromFilter : BaseTypeFilter
     {
+        protected override int FilterId => 1;
         private Type _baseType;
 
         public IsAssignableFromFilter(Type baseType)
@@ -17,13 +18,10 @@ namespace TypeCodebase
             _baseType = baseType;
         }
 
-        public IEnumerable<Type> Filter(IEnumerable<Type> types)
+        public override IEnumerable<Type> Filter(IEnumerable<Type> types)
             => types.Where((t) => _baseType == null || _baseType.IsAssignableFrom(t));
 
-        public override int GetHashCode()
-        {
-            const int filterId = 1;
-            return HashCode.Combine(filterId, _baseType);
-        }
+        protected override int BuildHashCode()
+            => HashCode.Combine(FilterId, _baseType);
     }
 }

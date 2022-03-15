@@ -37,7 +37,7 @@ namespace TypeCodebase
             return results.ToArray();
         }
 
-        public override int GetHashCode()
+        protected override int BuildHashCode()
         {
             HashCode hash = new HashCode();
             hash.Add(QueryTypeId);

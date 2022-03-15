@@ -7,6 +7,7 @@ namespace TypeCodebase
     {
         protected abstract int QueryTypeId { get; }
         private Type[] _cachedTypes;
+        private int? _cachedHashCode = null;
 
         public Type[] GetResults()
         {
@@ -20,6 +21,17 @@ namespace TypeCodebase
         public bool Equals(ITypeCodebaseQuery other)
             => GetHashCode() == other.GetHashCode();
 
+        public override int GetHashCode()
+        {
+            if (!_cachedHashCode.HasValue)
+            {
+                _cachedHashCode = BuildHashCode();
+            }
+            return _cachedHashCode.Value;
+        }
+
         protected abstract Type[] CacheResults();
+        protected abstract int BuildHashCode();
+
     }
 }
