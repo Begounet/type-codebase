@@ -1,9 +1,8 @@
 using System;
-using UnityEngine;
 
 namespace TypeCodebase
 {
-    public class TimeoutYielder
+    internal class TimeoutYielder
     {
         public long TimeoutMilliseconds { get; set; }
 
