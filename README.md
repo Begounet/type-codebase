@@ -16,9 +16,9 @@ Fetching assemblies and types on heavy project can quickly become really heavy a
 
 ### Type Query
 
-Use `TypeQueryManager.Query(myQuery)` to execute types query. All queries are cached. Queries comparison are based on what they do. So if you make a new instance of query doing the exact same thing of another query, you will get the cache result.
+Use `TypeQueryManager.Query(myQuery)` to execute types query. All queries are cached. Queries comparisons are based on what they do. So if you make a new instance of query doing the exact same thing of another query, you will get the cache result.
 
-Queries comparison are based on HashCode, that are generated according to the parameter of the query.
+Queries comparison are based on the Hash Code, that are generated according to the parameter of the query.
 
 #### "Type Query" types
 
@@ -61,22 +61,7 @@ Queries comparison are based on HashCode, that are generated according to the pa
     );
     ```
 
-
-
-## Customize
-
-### Implementing new Type Query
-
-- Inherit from `BaseTypeCodebaseQuery`
-- Implement `CacheResults` where you execute the operation. It will be called only when necessary.
-- Set a unique id for `QueryTypeId`. Look at other queries to ensure the id is not already used.
-- Override `GetHashCode` and generate a new HashCode by combining the query type id and parameters of your query to ensure its uniqueness. It is really important because it is what defines if the query has already been executed and results can get from the cache.
-
-### Implementing new Type Filter
-
-- Inherit from `ITypeFilter`
-- Implement `Filter` and return a filter for types passed as parameters.
-- Override `GetHashCode` and generate a new HashCode by combining a filter id and parameters of your query to ensure its uniqueness. It is really important because it is what defines if the query has already been executed and results can get from the cache.
+---
 
 ## TypeSelectorGUI
 
