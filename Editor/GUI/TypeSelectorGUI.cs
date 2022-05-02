@@ -17,9 +17,9 @@ namespace TypeCodebase
 
         public static Rect Draw(Rect position, SerializedProperty property, TypeSelectorAdvancedDropdown.Settings options)
         {
-            Type baseType = TryLoadTypeFromManagedReference(property);
+            options.ConstraintType = TryLoadTypeFromManagedReference(property);
             Type currentType = !string.IsNullOrEmpty(property.managedReferenceFullTypename) ? TryLoadTypeFromManagedReferenceTypename(property.managedReferenceFullTypename) : null;
-            position = Draw(position, currentType, baseType, options, out bool hasSelectedType, out Type selectedType);
+            position = Draw(position, currentType, options, out bool hasSelectedType, out Type selectedType);
             if (hasSelectedType)
             {
                 property.managedReferenceValue = (selectedType != null ? Activator.CreateInstance(selectedType) : null);
@@ -27,13 +27,8 @@ namespace TypeCodebase
             return position;
         }
 
-        public static Rect Draw(Rect position, Type currentType, Type baseType, TypeSelectorAdvancedDropdown.Settings options, out bool hasSelectedType, out Type selectedType)
+        public static Rect Draw(Rect position, Type currentType, TypeSelectorAdvancedDropdown.Settings options, out bool hasSelectedType, out Type selectedType)
         {
-            if (baseType == null)
-            {
-                throw new NullReferenceException($"{nameof(baseType)} cannot be null");
-            }
-
             int hotControl = GUIUtility.GetControlID(FocusType.Passive);
             if (hotControl == _workControlID)
             {
@@ -47,10 +42,9 @@ namespace TypeCodebase
                 selectedType = null;
             }
 
-            string displayName = GetShortTypename(currentType?.Name ?? baseType.Name);
+            string displayName = GetShortTypename(currentType?.Name ?? options.ConstraintType?.Name ?? "<unknown>");
             if (GUI.Button(position, displayName))
             {
-                Type constraintType = baseType;
                 var dropdown = new TypeSelectorAdvancedDropdown(new AdvancedDropdownState(), options);
                 dropdown.OnTypeSelected += (t) =>
                 {
