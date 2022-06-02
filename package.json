@@ -5,12 +5,14 @@
   "unity": "2021.2",
   "description": "Provide a centralized way to analyze types and cache things (like UnityEditor.TypeCache)",
   "keywords": [
-	"type",
-	"cache",
-	"codebase"
+    "type",
+    "cache",
+    "codebase"
   ],
   "author": "Arnaud Begue",
   "hideInEditor": false,
   "homepage": "",
-  "type": ""
+  "dependencies": {
+    "com.unity.editorcoroutines": "1.0.0"
+  }
 }
