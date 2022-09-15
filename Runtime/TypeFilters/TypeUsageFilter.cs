@@ -24,7 +24,8 @@ namespace TypeCodebase
                 && (!t.IsClass || _usage.HasFlag(ETypeUsageFlag.Class))
                 && (!t.IsValueType || _usage.HasFlag(ETypeUsageFlag.Struct))
                 && (!t.IsGenericType || _usage.HasFlag(ETypeUsageFlag.Generic))
-                && (!_usage.HasFlag(ETypeUsageFlag.ForbidUnityObject) || !typeof(UnityEngine.Object).IsAssignableFrom(t))
+                && (!typeof(UnityEngine.Object).IsAssignableFrom(t) || !_usage.HasFlag(ETypeUsageFlag.ForbidUnityObject))
+                && (!typeof(UnityEngine.Object).IsAssignableFrom(t) || _usage.HasFlag(ETypeUsageFlag.MustBeUnityObject))
             );
 
         protected override int BuildHashCode()
