@@ -29,7 +29,11 @@ namespace TypeCodebase
 
         public static Rect Draw(Rect position, Type currentType, TypeSelectorAdvancedDropdown.Settings options, out bool hasSelectedType, out Type selectedType)
         {
-            int hotControl = GUIUtility.GetControlID(FocusType.Passive);
+            // Base the control id generation on the Y position.
+            // ControlID is really important because it is responsible to attribute the new selected type
+            // to the correct property
+            int hint = Mathf.RoundToInt(position.y);
+            int hotControl = GUIUtility.GetControlID(hint, FocusType.Passive);
             if (hotControl == _workControlID)
             {
                 _workControlID = -2;

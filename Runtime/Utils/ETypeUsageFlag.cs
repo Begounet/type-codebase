@@ -12,5 +12,6 @@ namespace TypeCodebase
         Interface = 1 << 4,
         Generic = 1 << 5,
         ForbidUnityObject = 1 << 6,
+        MustBeUnityObject = 1 << 7,
     }
 }

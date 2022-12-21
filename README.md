@@ -23,6 +23,7 @@ Queries comparison are based on the Hash Code, that are generated according to t
 #### "Type Query" types
 
 - `GetAllTypesFromAssemblyQuery`: Query all types from an assembly
+- `GetAllTypesFromAllAssembliesQuery`: Query all types from all assemblies
 - `FilterQuery`: Apply a combination of filters ("Filter Query") on a query source to get only what you want. You can see it as a `System.Linq.Where` function.
 
 #### "Filter Query" types
@@ -43,6 +44,8 @@ Queries comparison are based on the Hash Code, that are generated according to t
 
   - ForbidUnityObject (So type that inherit from UnityObject cannot be selected)
 
+  - MustBeUnityObject (So only type that inherit from UnityObject can be selected)
+
     
 
   ##### Examples
@@ -52,7 +55,7 @@ Queries comparison are based on the Hash Code, that are generated according to t
     `TypeQueryManager.Query(new GetAllTypesFromAssemblyQuery(assembly))`
 
   - Return all types from an assembly that are class or structs and are assignable from `MyStruct`:
-
+  
     ```csharp
     TypeQueryManager.Query(
         new FilterQuery(new GetAllTypesFromAssemblyQuery(assembly),
