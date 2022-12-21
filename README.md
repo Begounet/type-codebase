@@ -82,3 +82,24 @@ TypeSelectorGUI.Draw(position, property, new TypeSelectorAdvancedDropdown.Settin
 `ConstraintType` is the base class of the types that can be selected. If your property is a `SerializeReference` with a base class type, you can use `TypeSelectorGUI.TryLoadTypeFromManagedReference(property)` to assign this type to the constraint type.
 
 For advanced purposes, you can also use directly `TypeSelectorAdvancedDropdown` to use the dropdown anywhere you want. Subscribe to `OnTypeSelected` to get the result but be careful that this is not called during the same frame that the draw! So you may have to defer the treatment you will do with the result.
+
+---
+
+## SerializableType
+
+You can use `SerializableType` to define a type that will be serialized (you still have to add the classes to `link.xml` on AOT platforms).
+
+```csharp
+[SerializedField]
+private SerializableType _type;
+```
+
+You can also add the attribute `SerializableTypeConstraint` to constraint the type selection.
+
+```csharp
+[SerializedField, SerializableTypeConstraint(typeof(IMyInterfaceType))]
+private SerializableType _type;
+```
+
+*Only types inheriting from `IMyInterfaceType` will be selectable.*
+
