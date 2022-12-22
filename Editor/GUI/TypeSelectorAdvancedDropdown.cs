@@ -148,5 +148,13 @@ namespace TypeCodebase
             }
             return (EditorWindow)_getWindowInstanceFI.GetValue(this);
         }
+
+        public void ShowAsDropdown()
+        {
+            if (Event.current != null)
+            {
+                Show(new Rect(Event.current.mousePosition, Vector2.zero));
+            }
+        }
     }
 }
