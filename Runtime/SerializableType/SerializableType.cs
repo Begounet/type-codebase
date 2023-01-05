@@ -34,13 +34,7 @@ namespace TypeCodebase
         public SerializableType(Type type) => _cachedType = type;
 
 
-        public void OnBeforeSerialize()
-        {
-            if (Type != null)
-            {
-                _typeFullname = Type.AssemblyQualifiedName;
-            }
-        }
+        public void OnBeforeSerialize() { }
 
         public void OnAfterDeserialize()
         {
