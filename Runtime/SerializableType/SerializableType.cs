@@ -31,7 +31,7 @@ namespace TypeCodebase
         public bool IsValidType => (Type != null);
 
         public SerializableType() { }
-        public SerializableType(Type type) => _cachedType = type;
+        public SerializableType(Type type) => Type = type;
 
 
         public void OnBeforeSerialize() { }
